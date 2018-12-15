@@ -18,8 +18,14 @@ mongod
 git clone https://github.com/georgezhang/dataera.git
 cd dataera
 cd dataera-keystone
+# create an environment files
 touch .env
-# ask george to get the sample of the content
+# ask george to get the sample of the content like below
+#
+# COOKIE_SECRET=o790287r90283729874297928749sfy98fyssfsf
+# CLOUDINARY_URL=cloudinary://298797979879:lfajwijf2342342@sfjslfjsl
+# MONGO_URI=mongodb://localhost/dataera
+#
 npm install
 
 # after completed successfully
