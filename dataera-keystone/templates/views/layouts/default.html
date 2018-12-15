@@ -1,0 +1,190 @@
+{% import "mixins/flash-messages.html" as FM %}
+
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+	<title>{{ title|default("DataEra IT Association") }}</title>
+	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/css/mdb.min.css" />
+
+	{# This file provides the default styling for the KeystoneJS Content Editor #}
+	{% if user and user.canAccessKeystone %}
+	<link href="/keystone/styles/content/editor.min.css" rel="stylesheet">
+	{% endif %}
+
+	{# HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries
+	Safely remove this block if you are not targeting IE8 #}
+	<!--[if lt IE 9]>
+			<script src="//cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.js"></script>
+			<script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+	{# Include template-specific stylesheets by extending the css block #}
+	<link rel="stylesheet" href="/styles/main.css" />
+	{% block css %}{% endblock %}
+
+	{# Add any other template-specific HEAD tags by extending the head block #}
+	{% block head %}{% endblock %}
+</head>
+
+<body>
+	<!--Main Navigation-->
+	<header>
+		<!--Navbar-->
+		<nav class="navbar navbar-expand-lg navbar-dark success-color">
+			<div class="container">
+				<!-- Navbar brand -->
+				<a class="navbar-brand" href="/">DataEra IT Association</a>
+
+				<!-- Collapse button -->
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#header-nav" aria-controls="header-nav" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+				<!-- Collapsible content -->
+				<div class="collapse navbar-collapse" id="header-nav">
+
+					<!-- Links -->
+					<ul class="navbar-nav mr-auto">
+
+						{% for link in navLinks %}
+						<li class="nav-item {{ 'active' if link.key == section else '' }}">
+							<a class="nav-link" href="{{ link.href }}">{{ link.label }}
+								{% if link.key == section %}<span class="sr-only">(current)</span>{% endif %}
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+					<!-- Links -->
+					<div class="rounded-social-buttons">
+					  <a class="social-button facebook" href="#"></a>
+					  <a class="social-button twitter" href="#"></a>
+					  <a class="social-button instagram" href="#"></a>
+					</div>
+				</div>
+		</nav>
+		<!--/.Navbar-->
+	</header>
+	<!--Main Navigation-->
+
+	<!--Main layout-->
+	<main class="mt-5 my-2">
+		{# NOTE:
+		There is no .container wrapping class around body blocks to allow more flexibility in design.
+		Remember to include it in your templates when you override the intro and content blocks! #}
+
+		{# The Intro block appears above flash messages (used for temporary information display) #}
+		{% block intro %}{% endblock %}
+
+		{# Flash messages allow you to display once-off status messages to users, e.g. form
+		validation errors, success messages, etc. #}
+		{{ FM.flashMessages(messages) }}
+
+		{# The content block should contain the body of your template"s content #}
+		{% block content %}{% endblock %}
+	</main>
+	<!--Main layout-->
+
+	<!--Footer-->
+	<!-- Footer -->
+	<footer class="page-footer font-small blue pt-4">
+
+		<!-- Footer Links -->
+		<div class="container-fluid text-center text-md-left">
+
+			<!-- Grid row -->
+			<div class="row">
+
+				<!-- Grid column -->
+				<div class="col-md-6 mt-md-0 mt-3">
+
+					<!-- Content -->
+					<h5 class="text-uppercase font-weight-bold">Non-profit Organization</h5>
+					<p>DataEra IT Association is helping Edmonton local communities to develop their skill set on Information Technology area.</p>
+					<p><i class="fa fa-phone" aria-hidden="true"></i> <b>Phone:</b> 1 (587) 710 2762</p>
+					<p><i class="fa fa-map-marker" aria-hidden="true"></i> <b>Address:</b> 356 Saddleback Rd NW, Edmonton, AB T6J 4R7</p>
+
+				</div>
+				<!-- Grid column -->
+
+				<hr class="clearfix w-100 d-md-none pb-3">
+
+				<!-- Grid column -->
+				<div class="col-md-3 mb-md-0 mb-3">
+
+					<!-- Links -->
+					<h5 class="text-uppercase">Services</h5>
+
+					<ul class="list-unstyled">
+						{% for service in Services.results %}
+						<li>
+							<a href="{{ service.url }}">{{ service.title | safe }}</a>
+						</li>
+						{% endfor %}
+					</ul>
+
+				</div>
+				<!-- Grid column -->
+
+				<!-- Grid column -->
+				<div class="col-md-3 mb-md-0 mb-3">
+
+					<!-- Links -->
+					<h5 class="text-uppercase">Sponsors</h5>
+
+					<ul class="list-unstyled">
+						{% for sponsor in Sponsors.results %}
+						<li>
+							<a href="{{ sponsor.url }}">{{ sponsor.title | safe }}</a>
+						</li>
+						{% endfor %}
+					</ul>
+
+				</div>
+				<!-- Grid column -->
+
+			</div>
+			<!-- Grid row -->
+
+		</div>
+		<!-- Footer Links -->
+
+		<!-- Copyright -->
+		<div class="footer-copyright text-center py-3">© <script>
+				document.write(new Date().getFullYear());
+			</script> Copyright:
+			<a href="https://dataera.ca">DataEra IT Association</a>
+		</div>
+		<!-- Copyright -->
+
+	</footer>
+	<!-- Footer -->
+	<!--Footer-->
+	{# JAVASCRIPT #}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.16/js/mdb.min.js"></script>
+	<!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment-with-locales.min.js"></script-->
+
+	{# The KeystoneJS Content Editor provides support for ks-editable data attributes,
+	which generate links to edit content for users who can access Keystone #}
+	{% if user and user.canAccessKeystone %}
+	<script src="/keystone/js/content/editor.js"></script>
+	{% endif %}
+
+	{# Add scripts that are globally required by your site here. #}
+	<script src="/js/main.js"></script>
+
+	{# Include template-specific javascript files by extending the js block #}
+	{% block js %}{% endblock %}
+</body>
+
+</html>

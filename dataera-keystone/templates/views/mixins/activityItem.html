@@ -1,0 +1,34 @@
+
+{% macro activityItem(activity) %}
+<!--Grid column-->
+<div class="col-lg-4 col-md-12 mb-4">
+
+	<!--Card-->
+	<div class="card z-depth-1-half">
+		<div class="text-white card-header gradient-card-header {{ activity.categories.headingGradient }}">
+			<h4 class="font-weight-bold">{{ activity.categories.name }}</h4>
+			<p class="locale-datetime"><i class="fa fa-calendar"></i> {{ activity._.startDateTime.format('LLLL') }}</p>
+		</div>
+		<!--Card image-->
+		<div class="view overlay">
+			<img src="{{ activity._.image.scale(350,233) }}" alt="{{ activity.title|safe }}">
+			<a href="/activity/detail/{{ activity.slug }}">
+				<div class="mask rgba-white-slight waves-effect waves-light"></div>
+			</a>
+		</div>
+
+		<!--Card content-->
+		<div class="card-body">
+			<!--Title-->
+			<h4 class="card-title">{{ activity.title|safe }}</h4>
+			<!--Text-->
+			<p class="card-text">{{ activity.content.simple|safe }}</p>
+			<a href="/activity/detail/{{ activity.slug }}" class="btn {{ activity.categories.buttonColor }} float-right">{{ activity.button.text }}</a>
+		</div>
+
+	</div>
+	<!--/.Card-->
+
+</div>
+<!--Grid column-->
+{% endmacro %}

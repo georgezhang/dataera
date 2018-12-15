@@ -1,0 +1,40 @@
+{% import "mixins/activityItem.html" as AI %}
+{% extends "layouts/default.html" %}
+
+{% block content %}
+<div class="container">
+	{% if data.promotedActivity %}
+	<div class="row">
+
+		<!--Grid column-->
+		<div class="col-md-7 mb-4">
+
+			<div class="view overlay z-depth-1-half">
+				<img src="{{ data.promotedActivity._.image.scale(635,281) }}" class="" style="width:100%;" alt="{{ data.promotedActivity.title|safe }}">
+				<div class="mask rgba-white-light"></div>
+			</div>
+
+		</div>
+		<!--Grid column-->
+
+		<!--Grid column-->
+		<div class="col-md-5 mb-4">
+
+			<h2>{{ data.promotedActivity.title|safe }}</h2>
+			<hr>
+			<p>{{ data.promotedActivity.content.simple|safe }}</p>
+			<a href="/activity/detail/{{ data.promotedActivity.slug }}" class="btn {{ data.promotedActivity.categories.buttonColor }} float-right">{{ data.promotedActivity.button.text }}</a>
+
+		</div>
+		<!--Grid column-->
+
+	</div>
+	{% endif %}
+
+	{% if data.activities %}
+	<div class="row">
+		{% for activity in data.activities.results %} {{ AI.activityItem(activity) }} {% endfor %}
+	</div>
+	{% endif %}
+</div>
+{% endblock %}

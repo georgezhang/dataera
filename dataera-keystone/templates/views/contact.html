@@ -1,0 +1,147 @@
+{% extends "layouts/default.html" %}
+
+{% block intro %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	{% if enquirySubmitted %}
+	<h3>Thanks for getting in touch.</h3>
+	{% else %}
+	<!--Section: Contact v.2-->
+	<section class="mb-4">
+
+		<!--Section heading-->
+		<h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+		<!--Section description-->
+		<p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do not hesitate to contact us directly. Our team will come back to you within
+			a matter of hours to help you.</p>
+
+		<div class="row">
+
+			<!--Grid column-->
+			<div class="col-md-9 mb-md-0 mb-5">
+				<form id="contact-form" name="contact-form" method="post">
+
+					<input type="hidden" name="action" value="contact">
+					<!--Grid row-->
+					<div class="row">
+
+						<!--Grid column-->
+						<div class="col-md-6">
+							{% set class = ( "has-error" if validationErrors.name else "" ) %}
+							<div class="md-form mb-0 {{ class }}">
+								<input id="name" type="text" name="name.full" value="{{ formData["name.full"] }}" class="form-control">
+								<label for="name" class="">Name</label>
+							</div>
+						</div>
+						<!--Grid column-->
+
+						<!--Grid column-->
+						<div class="col-md-6">
+							{% set class = ( "has-error" if validationErrors.email else "" ) %}
+							<div class="md-form mb-0 {{ class }}">
+								<input id="email" type="email" name="email" value="{{ formData.email }}" class="form-control">
+								<label for="email" class="">Email</label>
+							</div>
+						</div>
+						<!--Grid column-->
+
+					</div>
+					<!--Grid row-->
+
+					<!--Grid row-->
+					<div class="row">
+
+						<!--Grid column-->
+						<div class="col-md-6">
+							<div class="md-form mb-0 {{ class }}">
+								<input id="phone" type="text" name="phone" value="{{ formData.phone }}" placeholder="(optional)" class="form-control">
+								<label for="phone" class="">Phone</label>
+							</div>
+						</div>
+						<!--Grid column-->
+						<!--Grid column-->
+						<div class="col-md-6">
+							{% set class = ( "has-error" if validationErrors.enquiryType else "" ) %}
+							<div class="md-form2 mb-0 {{ class }}">
+								<label for="enquiryType" class="">What are you contacting us about?</label>
+								<select id="enquiryType" name="enquiryType" class="form-control">
+									<option value="">(select one)</option>
+									{% for type in enquiryTypes %}
+									{% set selected = ( 'selected="selected"' if formData.enquiryType == type.value else "" ) %}
+									<option value="{{type.value}}" {{ selected }}>{{ type.label }}</option>
+									{% endfor %}
+								</select>
+
+							</div>
+						</div>
+						<!--Grid column-->
+
+					</div>
+					<!--Grid row-->
+
+					<!--Grid row-->
+					<div class="row">
+						<div class="col-md-12">
+							<div class="md-form mb-0">
+								<input type="text" id="subject" name="subject" class="form-control">
+								<label for="subject" class="">Subject</label>
+							</div>
+						</div>
+					</div>
+					<!--Grid row-->
+
+					<!--Grid row-->
+					<div class="row">
+						<!--Grid column-->
+						<div class="col-md-12">
+							{% set class = ( "has-error" if validationErrors.message else "" ) %}
+							<div class="md-form {{ class }}">
+								<textarea id="message" name="message" placeholder="Leave us a message..." rows="2" class="form-control md-textarea">{{ formData.message }}</textarea>
+								<label for="message">Your message</label>
+							</div>
+
+						</div>
+					</div>
+					<!--Grid row-->
+
+
+					<!--Grid row-->
+					<div class="row">
+						<div class="text-center">
+							<button class="btn btn-primary" type="submit">Send</button>
+						</div>
+						<div class="status"></div>
+					</div>
+					<!--Grid row-->
+				</form>
+			</div>
+			<!--Grid column-->
+
+			<!--Grid column-->
+			<div class="col-md-3 text-center">
+				<ul class="list-unstyled mb-0">
+					<li><i class="fa fa-map-marker fa-2x"></i>
+						<p>356 Saddleback Rd NW, Edmonton, AB T6J 4R7</p>
+					</li>
+
+					<li><i class="fa fa-phone mt-4 fa-2x"></i>
+						<p>+1 (587) 710 2762</p>
+					</li>
+
+					<li><i class="fa fa-envelope mt-4 fa-2x"></i>
+						<p>contact@dataera.ca</p>
+					</li>
+				</ul>
+			</div>
+			<!--Grid column-->
+
+		</div>
+
+	</section>
+	{% endif %}
+	<!--Section: Contact v.2-->
+</div>
+{% endblock %}
