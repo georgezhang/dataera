@@ -43,8 +43,9 @@ admin
 ***
 ### Reference
 ***
-[Bootstrap 4](https://getbootstrap.com/)
-[Material UI](https://mdbootstrap.com/docs/jquery/)
-[KeystoneJS](https://keystonejs.netlify.com/getting-started)
 
-[Host ASP.NET Core on Linux with Nginx](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-2.2)
+- [Bootstrap 4](https://getbootstrap.com/)
+- [Material UI](https://mdbootstrap.com/docs/jquery/)
+- [KeystoneJS](https://keystonejs.netlify.com/getting-started)
+
+- [Host ASP.NET Core on Linux with Nginx](https://docs.microsoft.com/en-us/aspnet/core/host-and-deploy/linux-nginx?view=aspnetcore-2.2)
